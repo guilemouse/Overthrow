@@ -256,7 +256,7 @@ modifyCryptoCap = {
 	if (_changeTerm isEqualTo "release") then {
 		//Adding back to the cap by releasing into the _escrowCryptoCap;
 		//From players selling Crypto
-		if (_escrowCryptoCap > _globalCryptoCap) {
+		if (_escrowCryptoCap > _globalCryptoCap) then {
 			_escrowCryptoCap = _globalCryptoCap;
 		};
 
@@ -284,7 +284,7 @@ modifyCryptoCap = {
 		};
 	};
 
-	if (_ret && !_seized) {
+	if (_ret && !_seized) then {
 		//if return is true aka operation succeeds;
 		//And if it's not seized value from other players;
 		//Then the server escrow goes up by this amount;
