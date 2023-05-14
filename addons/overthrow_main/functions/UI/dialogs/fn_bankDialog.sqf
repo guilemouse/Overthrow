@@ -33,7 +33,7 @@ cryptoReturn = {
 	private _dayCheck = true; //Turn this FALSE if you want to use pure RNG per sell which would be very easily exploitable;
 	private _xAxis = 0; //It caps at 1;
 	if (_dayCheck) then {
-		_xAxis = dayTime/24; //DayTime goes from 0 to 24.00000;
+		_xAxis = dayTime; //DayTime goes from 0 to 24.00000;
 	} else {
 		_xAxis = random (100)/100;
 	};
@@ -47,7 +47,14 @@ cryptoReturn = {
 	//This is cos (1.5*pi*x  +  pi) + 1.5; 
 	//It should restrict X to 0 to 1, float;
 	//It should imply Y to 0.5 to 2.5;
-	_ret = cos (pi*((1.5 * _xAxis) + 1)) + 1 + _tradeConstant;
+	//_ret = cos (pi*((1.5 * _xAxis) + 1)) + 1 + _tradeConstant;
+
+	//X^2 function where x = hours of the day
+	//-(x*(x-(24)))-(143-(1*_tradeConstant))
+	_ret = -((_xAxis * (_xAxis - 24)) - (143 - (1 * _tradeConstant)))
+	if !(_ret > 0 ) then {
+		_ret = 1;
+	};
 	_ret
 };
 
