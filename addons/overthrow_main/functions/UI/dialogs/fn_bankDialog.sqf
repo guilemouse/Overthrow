@@ -39,7 +39,7 @@ cryptoReturn = {
 	};
 	private _playerTrade = player getvariable ["OT_arr_trade",[1,1]] select 1;
 	//Player Trade skill maxes out at 20, so basically the more skill you have, the better results 
-	private _tradeConstant = 0.5 * (_playerTrade/20);
+	private _tradeConstant = (_playerTrade/20);
 	private _ret = false;
 	//Remember cos (90) < 0.00001 because
 	// cos (90) != 0;
