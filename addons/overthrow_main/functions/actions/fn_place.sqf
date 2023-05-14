@@ -207,6 +207,7 @@ if(_cost > 0) then {
 		if ([getpos player,_typecls] call OT_fnc_canPlace) then {
 			//ML Copy paste; to delete FOB when it is too close to enemies;
 			private _proceed = true;
+	
 			if(_typecls isEqualTo "Base") then {
 				//If too close to enemy base, set proceed to false to exit out of scope of this if and the if above.
 				if(({side _x isEqualTo west || side _x isEqualTo east} count ((getpos modeTarget) nearEntities 200)) > 0) then {
@@ -218,11 +219,14 @@ if(_cost > 0) then {
 					//Naming the base, proceed normally
 					createDialog "OT_dialog_name";
 					ctrlSetText [1400,"Base"];
-				};
-			};
-			if!(_proceed) exitWith {};
+					[-_cost] call OT_fnc_money; //250 for base;
 
-			[-250] call OT_fnc_money;
+				};
+			} else {
+				[-_cost] call OT_fnc_money; //this is for all other purchases not based orientated.
+			};
+			if!(_proceed) exitWith {}; //exit scope when base is invalid
+
 			modeTarget setPosATL [getPosATL modeTarget select 0,getPosATL modeTarget select 1,getPosATL player select 2];
 			[modeTarget,getPlayerUID player] call OT_fnc_setOwner;
 			modeTarget remoteExec["OT_fnc_initObjectLocal",0,modeTarget];
