@@ -51,7 +51,7 @@ cryptoReturn = {
 
 	//X^2 function where x = hours of the day
 	//-(x*(x-(24)))-(143-(1*_tradeConstant))
-	_ret = -((_xAxis * (_xAxis - 24)) - (143 - (1 * _tradeConstant)));
+	_ret = -1*(_xAxis * (_xAxis - 24)) - (143 - (1 * _tradeConstant));
 	if !(_ret > 0 ) then {
 		_ret = 1;
 	};
