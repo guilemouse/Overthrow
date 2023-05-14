@@ -208,16 +208,20 @@ if(_cost > 0) then {
 			//ML Copy paste; to delete FOB when it is too close to enemies;
 			private _proceed = true;
 			if(_typecls isEqualTo "Base") then {
-				if(({side _x isEqualTo west || side _x isEqualTo east} count ((getpos modeTarget) nearEntities 200)) > 0) exitWith {
+				//If too close to enemy base, set proceed to false to exit out of scope of this if and the if above.
+				if(({side _x isEqualTo west || side _x isEqualTo east} count ((getpos modeTarget) nearEntities 200)) > 0) then {
 					"You cannot build a FOB so close to enemies." call OT_fnc_notifyMinor;
 					detach modeTarget;
 					deleteVehicle modeTarget;
 					_proceed = false;
+				} else {
+					//Naming the base, proceed normally
+					createDialog "OT_dialog_name";
+					ctrlSetText [1400,"Base"];
 				};
-				createDialog "OT_dialog_name";
-				ctrlSetText [1400,"Base"];
 			};
 			if!(_proceed) exitWith {};
+
 			[-250] call OT_fnc_money;
 			modeTarget setPosATL [getPosATL modeTarget select 0,getPosATL modeTarget select 1,getPosATL player select 2];
 			[modeTarget,getPlayerUID player] call OT_fnc_setOwner;
@@ -231,7 +235,6 @@ if(_cost > 0) then {
 			if(_typecls isEqualTo "Base") then {
 				createDialog "OT_dialog_name";
 				ctrlSetText [1400,"Base"];
-			};
 			*/
 			if(_typecls == "Camp") then {
 				private _mrkid = format["%1-camp",getplayeruid player];
