@@ -1918,7 +1918,7 @@ class OT_dialog_newgame
             h = 0.077 * safezoneH;
 			color[] = {0,0.8,0,1};
 			action = "server setvariable [""OT_fastTravelRules"",1,true];call OT_fnc_newGameDialog;";
-			tooltip = "Cannot fast travel while holding a weapon or carrying drugs";
+			tooltip = "Cannot fast travel while holding a weapon"; //Removed " or carrying drugs" -2023 Dorf; Setting changed accordingly;
         };
         class RscButton_1609: RscOverthrowButton
         {

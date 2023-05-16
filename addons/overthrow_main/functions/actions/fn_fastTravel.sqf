@@ -20,8 +20,8 @@ private _hasdrugs = false;
 {
 	if(_x in OT_allDrugs) exitWith {_hasdrugs = true};
 }foreach(items player);
-
-if(_hasdrugs && _ftrules > 0) exitWith {"You cannot fast travel while carrying drugs" call OT_fnc_notifyMinor};
+//Dorf 2023; _hasdrugs && _ftrules > 0; Changed to > 1 fitting in main hpp;
+if(_hasdrugs && _ftrules > 1) exitWith {"You cannot fast travel while carrying drugs" call OT_fnc_notifyMinor}; //Changed from 0 to 1; Dorf 2023;
 
 private _exit = false;
 if((vehicle player) != player) then {
@@ -29,7 +29,7 @@ if((vehicle player) != player) then {
 		if(_x in OT_allDrugs) exitWith {_hasdrugs = true};
 	}foreach(itemCargo vehicle player);
 
-	if(_hasdrugs && _ftrules > 0) exitWith {hint "You cannot fast travel while carrying drugs";_exit=true};
+	if(_hasdrugs && _ftrules > 1) exitWith {hint "You cannot fast travel while carrying drugs";_exit=true}; //Changed from 0 to 1; Dorf 2023;
 	if (driver (vehicle player) != player)  exitWith {hint "You are not the driver of this vehicle";_exit=true};
 	if({!captive _x && alive _x} count (crew vehicle player) != 0)  exitWith {hint "There are wanted people in this vehicle";_exit=true};
 	if(_ftrules > 1 && ((typeOf(vehicle player)) in (OT_allVehicleThreats + OT_allHeliThreats + OT_allPlaneThreats)))  exitWith {hint "You cannot fast travel in an offensive vehicle";_exit=true};
