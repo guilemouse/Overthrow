@@ -9,8 +9,7 @@ A rework of the dynamic and persistent revolution campaign mod for ARMA 3 Apex b
 
 # Overthrow 2023 Priest-Dev 
 ## Work in Progress from 2021~
-* ALl changes are subject to more changes and complaints
-* In development to revive priests into tech-priests (not the 40k kind)
+* ALL changes are subject to more changes and complaints
 * Tech-priests are currently called "Arch-Crypto" _fullname. 
 * They will spawn near churches, work as a money sink to raise late/mid game resistance support in different cities.
 * They will keep a bank for you, linked like the network of warehouses 
@@ -22,7 +21,7 @@ A rework of the dynamic and persistent revolution campaign mod for ARMA 3 Apex b
 * May even Cap off the infinite sizes of trucks working from import shops. (Maybe)
 
 # 2023 Features
-* Difficulty Fast traveling is now set for "Open, No Weapons, No Drugs/Weapons/Hostile Vehicles", instead of "Open, No Drugs/Weapons, No Drugs/Weapons/Hostile Vehicles".
+* Difficulty Fast traveling options is now set for "Open, No Weapons, No Drugs/Weapons/Hostile Vehicles", instead of "Open, No Drugs/Weapons, No Drugs/Weapons/Hostile Vehicles".
 * Fixed more bugs.
 
 # Overthrow 2021 Features
