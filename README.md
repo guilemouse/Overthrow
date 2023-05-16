@@ -8,7 +8,7 @@ A rework of the dynamic and persistent revolution campaign mod for ARMA 3 Apex b
 ![overthrowape_logo_tankbg](https://user-images.githubusercontent.com/1497274/130343157-f2abe68c-c644-4c6e-89e6-b526d9bbaa33.png)
 
 # Overthrow 2023 Priest-Dev 
-## Work in Progress from 2021)
+## Work in Progress from 2021~
 * ALl changes are subject to more changes and complaints
 * In development to revive priests into tech-priests (not the 40k kind)
 * Tech-priests are currently called "Arch-Crypto" _fullname. 
