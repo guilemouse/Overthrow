@@ -125,7 +125,7 @@ if(_handled) then {
 		_owned pushback _id;
 		[player,"Building Purchased",format["Bought: %1 in %2 for $%3. You have %4 Owned and %5 Leased", getText(configFile >> "CfgVehicles" >> (typeof _building) >> "displayName"),(getpos _building) call OT_fnc_nearestTown,_price, _total_bdgs_count, _total_lsd_count]] call BIS_fnc_createLogRecord;
 		format["You have %2 Buildings, %1 Leased, Deedlock %2/%3.", _total_lsd_count, _total_bdgs_count, _bubble_cap] call OT_fnc_notifyMinor;
-		_building addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler];
+		_building addEventHandler ["Dammaged",OT_fnc_buildingDamagedHandler]; //Dorf 2023 not sure if "Dammage" is intentionally mis spelled.
 	}else{
 		//This entire block is for selling houses 
 		//2021- Dorf: I edited this with intent to balance hoarding landlords
