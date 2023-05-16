@@ -1045,7 +1045,8 @@ class OT_dialog_main
 		class RscButton_1614: RscOverthrowButton
 		{
 			idc = 1614;
-			action = "closeDialog 0;[] spawn OT_fnc_jobsDialog";
+			//Dorf edit 2023 originally it spawned OT_fnc_jobsDialog, corrected to call;
+			action = "closeDialog 0;call OT_fnc_jobsDialog"; 
 
 			text = "Jobs"; //--- ToDo: Localize;
 			x = 0.005 * safezoneW + safezoneX;
