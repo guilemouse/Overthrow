@@ -110,7 +110,11 @@ if(_handled) then {
 	private _mrkid = format["bdg-%1",_building];
 	private _owned = player getVariable "owned"; //Remember this is different from "leased"
 	private _total_bdgs_count = count (player getVariable "owned");
-	private _total_lsd_count = count (player getVariable "leased");
+	private _total_lsd_count = 0; //fixed bug Dorf 2023 regarding leased non existing when buying building, making building purchase notification bugout.
+	
+	if !(isNil {player getVariable "leased"}) then {
+		_total_lsd_count = count (player getVariable "leased");
+	}
 
 	if(_type isEqualTo "buy") then {
 
@@ -145,6 +149,7 @@ if(_handled) then {
 
 			//Owner is not the player and bubble is popped
 			//@TODO Make it prettier
+			//@TODO Potential debug when no leased is listed; Dorf 2023
 			if (_bubble_popped && !_owner_is_player) then {
 				//bubble popped and owner is not the player
 				if (_owner_isonline) then {
