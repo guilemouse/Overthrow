@@ -151,7 +151,19 @@ if(isplayer _target) then {
 		};
 	}foreach(_target call OT_fnc_getSearchStock);
 
-	if(_foundillegal || _foundweapons) then {
+	private _chance = 100; //always true because random 100 is 0 to 99, and 0~99 < 100
+	if(isplayer _target) then {
+		//Added Stealth Mechanic 2023 Dorf;
+		private _stealth = _target getVariable ["OT_arr_stealth",[1,0]] select 1;
+		if(_stealth > 1) then {
+			//This is a 100% maximum chance for someone to roll a d20 on character sheet to be invisible to searches.
+			//_stealth is maximum 21.
+			_chance = 100 - ((_stealth - 1) * 5); 
+		};
+	};
+
+	if((_foundillegal || _foundweapons) && ((random 100) < _chance)) then { 
+		//change increases possibility from 99% this to comparing random 100 to 95, 90, 85, etc until 0.
 		if(_foundweapons) then {
 			if(isplayer _target) then {
 				[_cop,"What's this!?"] remoteExec ["globalchat",_target,false];
@@ -161,20 +173,9 @@ if(isplayer _target) then {
 			[_target] call OT_fnc_revealToNATO;
 		}else{
 			if(isplayer _target) then {
-				private _stealth = _target getVariable ["OT_arr_stealth",[1,0]] select 1;
-				_chance = 100;
-				if(_stealth > 1) then {
-					//This is a 100% maximum chance for someone to roll a d20 on character sheet to be invisible to searches.
-					//_stealth is maximum 21.
-					_chance = ((_stealth - 1) * 5); 
-				};
-				if((random 100) < _chance) then {
-					[_cop,"We found some illegal items && confiscated them, be on your way"] remoteExec ["globalchat",_target,false];
-					"NATO confiscated illegal items" remoteExecCall ["hint",_target,false];
-					private _town = (getpos _target) call OT_fnc_nearestTown;
-				}else{
-					[_cop,"Thank you for your co-operation"] remoteExec ["globalchat",_target,false];
-				};
+				[_cop,"We found some illegal items && confiscated them, be on your way"] remoteExec ["globalchat",_target,false];
+				"NATO confiscated illegal items" remoteExecCall ["hint",_target,false];
+				//private _town = (getpos _target) call OT_fnc_nearestTown; Edited out 2023 Dorf; due to useless;
 			};
 		};
 	}else{

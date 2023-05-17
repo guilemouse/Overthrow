@@ -78,16 +78,33 @@ if !(captive _unit) then {
 				};
 				if(!isPlayer _unit) then {_player = _unit call OT_fnc_getOwnerUnit};
 				private _rep = _player getVariable [format["gangrep%1",_gangid],0];
+				private _stealth = _player getVariable ["OT_arr_stealth",[1,0]] select 1; 
+				private _chance = 100;
 
+				if (_stealth > 1) then {
+					_chance = 100 - ((_stealth - 1) * 5);
+				};
+				
 				if(_rep < -9) exitWith {
 					//Gang hates you, instant wanted no matter what
-					_unit setCaptive false;
-					[_unit] call OT_fnc_revealToCRIM;
-					if(isPlayer _unit) then {
-						format["%1 have recognized you",_name] call OT_fnc_notifyMinor;
+					if ((random 100) < _chance) then {
+						_unit setCaptive false;
+						[_unit] call OT_fnc_revealToCRIM;
+						if(isPlayer _unit) then {
+							format["%1 have recognized you",_name] call OT_fnc_notifyMinor;
+						};
+					} else {
+						if(isPlayer _unit) then {
+							format["%1 did not recognized you due to your Stealth",_name] call OT_fnc_notifyMinor;
+						};
 					};
 				};
 				if(_rep < 10) then {
+					if !((random 100) < _chance) exitWith {
+						if(isPlayer _unit) then {
+							format["%1 have not seen your illegal gear due to your Stealth",_name] call OT_fnc_notifyMinor;
+						};
+					};
 					// carrying a static weapon
 					if (_unit call OT_fnc_carriesStaticWeapon) exitWith {
 						_unit setCaptive false;
@@ -99,6 +116,10 @@ if !(captive _unit) then {
 
 					// driving with weapons, illegal clothing/gear, in illegal vehicles
 					if(!(_vehicle isEqualTo _unit) && { _unit call OT_fnc_illegalInCar }) exitWith {
+						if(isPlayer _unit) then {
+							format["%1 have seen your illegal gear in your vehicle",_name] call OT_fnc_notifyMinor;
+						};
+
 						//Set the whole car wanted
 						{
 							_x setCaptive false;
