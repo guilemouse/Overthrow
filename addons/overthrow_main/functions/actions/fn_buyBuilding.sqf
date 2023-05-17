@@ -114,7 +114,7 @@ if(_handled) then {
 	
 	if !(isNil {player getVariable "leased"}) then {
 		_total_lsd_count = count (player getVariable "leased");
-	}
+	};
 
 	if(_type isEqualTo "buy") then {
 
