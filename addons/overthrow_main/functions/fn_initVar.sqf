@@ -693,7 +693,7 @@ OT_allBLURifleMagazines = [];
 		if (_weaponType == "AssaultRifle") exitWith {
 			private _cost = [_caliber] call {
 				params ["_caliber"];
-				if(_caliber == " 5.56" || _caliber == "5.56" || _caliber == " 5.45" || _caliber == " 5.8") exitWith {500};
+				if(_caliber == " 5.56" || _caliber == " 5.45" || _caliber == " 5.8") exitWith {500};
 				if(_caliber == " 12 gauge") exitWith {1200};
 				if(_caliber == " .408") exitWith {4000};
 				if(_caliber == " .338 Lapua Magnum" || _caliber == " .303") exitWith {700};
