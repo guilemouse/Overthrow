@@ -43,10 +43,10 @@ private _expiry = 0;
             };
         };
     };
-    if(_gotjob) exitWith {};
-}foreach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy);
+    if(_gotjob && !(_jobcode isEqualTo [])) exitWith {}; //Hopefully catches none kill missions that has [] as parameters.
+}foreach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy); 
 
-if !(_gotjob) exitWith {
+if !(_gotjob || _jobcode isEqualTo []) exitWith { //Hopefully catches none kill missions that has [] as parameters.
     [OT_interactingWith,player,["We don't have any more jobs at the moment."]] spawn OT_fnc_doConversation;
 };
 
