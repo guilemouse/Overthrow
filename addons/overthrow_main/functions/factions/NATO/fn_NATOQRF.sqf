@@ -260,7 +260,7 @@ if(_progress > 0) then {
 					if((vehicle _lead) != _lead) then {
 						[vehicle _lead] call OT_fnc_cleanup;
 					}else{
-						if((getpos _lead) call OT_fnc_inSpawnDistance) then {
+						if([(getpos _lead)] call OT_fnc_inSpawnDistance) then {
 							{
 								_x setVariable ["garrison",_garrison,true];
 							}foreach(units _x);

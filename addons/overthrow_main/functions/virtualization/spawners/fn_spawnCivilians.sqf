@@ -16,7 +16,7 @@ private _mSize = 350;
 if(_town in OT_capitals) then {
 	_mSize = 900;
 };
-private _numciv = 0;
+private _numCiv = 0;
 
 if(_pop > 5) then {
 	_numCiv = round(_pop * OT_spawnCivPercentage);

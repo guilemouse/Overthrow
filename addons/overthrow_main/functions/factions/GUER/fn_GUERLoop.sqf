@@ -1,6 +1,6 @@
 GUER_faction_loop_data params ["_lastmin","_lasthr","_currentProduction","_stabcounter","_trackcounter"];
 
-private _numplayers = count([] call CBA_fnc_players);
+private _numplayers = count(allPlayers - (entities "HeadlessClient_F")); //Headless removal added from Community Edition;
 if(_numplayers isEqualTo 0) exitWith {};
 
 _trackcounter = _trackcounter + 1;
@@ -13,7 +13,7 @@ if(_trackcounter > 5) then {
 			_x setVariable ["OT_newplayer",false,true];
 		};
 		[_x] call OT_fnc_savePlayerData;
-	}foreach([] call CBA_fnc_players);
+	}foreach(allPlayers - (entities "HeadlessClient_F"));
 
 	_track = [];
 	{
@@ -37,7 +37,7 @@ if(_trackcounter > 5) then {
 			_x setBehaviour "SAFE";
 		};
 	};
-}foreach(allGroups select {(side _x) isEqualTo civilian});
+}foreach (groups civilian);
 
 private _dead = count alldeadmen;
 if(_dead > 150) then {
@@ -220,7 +220,7 @@ if ((date select 4) != _lastmin) then {
 			_town = _x;
 			_townpos = server getvariable _x;
 			if !(_town in _abandoned) then {
-				if(_townpos call OT_fnc_inSpawnDistance) then {
+				if([_townpos] call OT_fnc_inSpawnDistance) then {
 					private _numcops = {side _x isEqualTo west} count (_townpos nearObjects ["CAManBase",600]);
 					if(_numcops isEqualTo 0) then {
 						[_town,-1] call OT_fnc_stability;

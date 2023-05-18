@@ -32,7 +32,7 @@ private _attacking = server getVariable["NATOattacking",""];
 if(!isNil "_close") then {
 	_current = server getVariable [format ["garrison%1",_town],0];
 	server setVariable [format ["garrison%1",_town],_current+4,true];
-	if !(_townPos call OT_fnc_inSpawnDistance) exitWith {};
+	if !([_townPos] call OT_fnc_inSpawnDistance) exitWith {};
 
 	_start = [_close,0,200, 1, 0, 0, 0] call BIS_fnc_findSafePos;
 	_group = creategroup blufor;

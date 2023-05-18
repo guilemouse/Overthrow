@@ -50,7 +50,7 @@ if !(job_system_counter < 12) then {
                 private _id = format["%1-%2",_name,_x];
                 private _stability = server getVariable [format["stability%1",_x],100];
                 private _loc = server getVariable _x;
-                private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
+                private _inSpawnDistance = [_loc] call OT_fnc_inSpawnDistance;
                 if(([_inSpawnDistance,_stability,_x] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) exitWith {
                   _activeJobs pushback _id;
                   spawner setVariable ["OT_activeJobIds",_activeJobs,false]; //new addition i assume to fix jobs
@@ -65,7 +65,7 @@ if !(job_system_counter < 12) then {
                 _x params ["_loc","_base"];
                 private _id = format["%1-%2",_name,_base];
 
-                private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
+                private _inSpawnDistance = [_loc] call OT_fnc_inSpawnDistance;
                 private _stability = server getVariable [format["stability%1",_loc call OT_fnc_nearestTown],100];
                 if(([_inSpawnDistance,_base,_stability] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) exitWith {
                   _activeJobs pushback _id;
@@ -84,7 +84,7 @@ if !(job_system_counter < 12) then {
                 	_x params ["_hvtid","_at","_status"];
                 	if(_at == _base && _status == "") then {
                         private _id = format["%1-%2",_name,_hvtid];
-                        private _inSpawnDistance = _loc call OT_fnc_inSpawnDistance;
+                        private _inSpawnDistance = [_loc] call OT_fnc_inSpawnDistance;
                         if(([_inSpawnDistance,_base] call _condition) && !(_id in _completed) && !(_id in _activeJobs)) exitWith {
 				  	              _activeJobs pushback _id; //Thank you martial law;
                           spawner setVariable ["OT_activeJobIds",_activeJobs,false]; //new addition i assume to fix jobs
@@ -106,7 +106,7 @@ if !(job_system_counter < 12) then {
                 private _town = "";
                 if(count _pos > 0) then {
                   private _standing = server getVariable [format["standing%1",_cls],0];
-                  private _inSpawnDistance = _pos call OT_fnc_inSpawnDistance; //returns true?;
+                  private _inSpawnDistance = [_pos] call OT_fnc_inSpawnDistance; //returns true?;
                   private _town = _pos call OT_fnc_nearestTown;
                   private _id = format["%1-%2",_name,_cls];
                   private _stability = server getVariable [format["stability%1",_town],100];

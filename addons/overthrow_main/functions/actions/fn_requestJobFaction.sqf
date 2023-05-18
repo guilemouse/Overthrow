@@ -33,7 +33,7 @@ private _expiry = 0;
             //if(([_inSpawnDistance,_base,_stability] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
             if (count _pos_inSpawnDistance > 0) then {
                 private _town = _pos_inSpawnDistance call OT_fnc_nearestTown;
-                private _inSpawnDistance = _pos_inSpawnDistance call OT_fnc_inSpawnDistance; //returns true if working;
+                private _inSpawnDistance = [_pos_inSpawnDistance] call OT_fnc_inSpawnDistance; //returns true if working;
                 private _stability = server getVariable [format["stability%1",_town],100];
                 private _population = server getVariable [format["population%1",_town],50];
                 if(([_inSpawnDistance, _standing, _town, _stability, _population] call _condition) && !(_id in _completed) && !(_id in _activeJobs) && !(_id in OT_jobsOffered)) then {
@@ -46,7 +46,7 @@ private _expiry = 0;
     if(_gotjob && !(_jobcode isEqualTo [])) exitWith {}; //Hopefully catches none kill missions that has [] as parameters.
 }foreach([OT_allJobs,[],{random 100},"ASCEND",{_x select 7}] call BIS_fnc_SortBy); 
 
-if !(_gotjob || _jobcode isEqualTo []) exitWith { //Hopefully catches none kill missions that has [] as parameters.
+if (!_gotjob || _jobcode isEqualTo []) exitWith { //Hopefully catches none kill missions that has [] as parameters.
     [OT_interactingWith,player,["We don't have any more jobs at the moment."]] spawn OT_fnc_doConversation;
 };
 
@@ -55,7 +55,7 @@ OT_jobShowing = _job;
 OT_jobShowingID = _id;
 OT_jobShowingExpiry = _expiry;
 OT_jobsOffered pushback _id;
-if(count _job isEqualTo 0) exitWith {call OT_fnc_requestJobFaction}; //Previously this was requestJobGang??...
+if(count _job isEqualTo 0) exitWith {call OT_fnc_requestJobGang}; //Previously this was requestJobGang??... Validated from unable to find faction jobs.
 _job params ["_info","_markerPos","_setup","_fail","_success","_end","_jobparams"];
 
 OT_jobShowingType = "faction";
