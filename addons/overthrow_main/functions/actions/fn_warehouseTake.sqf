@@ -41,7 +41,7 @@ for [{private _i = 0}, {_i < _i_count}, {_i = _i + 1}] do {
 while {_count < _num} do {
 	//If vehicle is not a truck and vehicle is not an item storage and item cannot be added further... then ...
 	//if ((!(_veh isKindOf "Truck_F")) && (!(_veh isKindOf OT_item_Storage)) && (!(_veh canAdd _cls))) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _num = _count};
-	if (!_found_truck && !(_veh isKindOf OT_item_Storage) && !(_veh canAdd _cls)) exitWith {hint "This vehicle is full, use a truck for more storage"; closeDialog 0; _num = _count};
+	if (!_found_truck && !(_veh isKindOf OT_item_Storage) && !(_veh canAdd _cls)) exitWith {hint "This vehicle is full, use a bigger truck for more storage"; closeDialog 0; _num = _count};
 	[_cls, _veh] call {
 		params ["_cls", "_veh"];
 		if(_cls isKindOf ["Rifle",configFile >> "CfgWeapons"]) exitWith {

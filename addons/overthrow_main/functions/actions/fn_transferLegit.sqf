@@ -81,7 +81,7 @@ _doTransfer = {
 			if(_full) exitWith {};
 		}foreach(_target call OT_fnc_unitStock);
 	};
-	if(_full) then {hint "This vehicle is full, use a truck for more storage"};
+	if(_full) then {hint "This vehicle is full, use a bigger truck for more storage"};
 	"Inventory Transfer done" call OT_fnc_notifyMinor;
 };
 

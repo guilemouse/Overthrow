@@ -129,7 +129,7 @@ _this spawn {
 				};
 				[_target, _cls, _count] call CBA_fnc_removeItemCargo;
 			};
-			if(_full) exitWith {hint "The vehicle is full, use a truck or ammobox for more storage"};
+			if(_full) exitWith {hint "The vehicle is full, use a bigger truck or ammobox for more storage"};
 		}foreach(_target call OT_fnc_unitStock);
 	};
 

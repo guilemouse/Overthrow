@@ -81,7 +81,7 @@ private _doSalvage = {
         //if it's not a truck or a ammo box and if it cannot add more steel then ...
         //if(!(_veh isKindOf "Truck_F" || _veh isKindOf "ReammoBox_F") && !(_veh canAdd "OT_Steel")) exitWith {
         if(!(_found_truck || _veh isKindOf "ReammoBox_F") && !(_veh canAdd "OT_Steel")) exitWith {
-            "Vehicle is full, use a truck || ammobox for more storage" call OT_fnc_notifyMinor;
+            "Vehicle is full, use a bigger truck || ammobox for more storage" call OT_fnc_notifyMinor;
         };
         _done = _done + 1;
         _veh addItemCargoGlobal ["OT_Steel", 1];
