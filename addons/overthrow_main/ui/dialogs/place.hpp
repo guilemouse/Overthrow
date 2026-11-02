@@ -50,7 +50,10 @@ class OT_dialog_name
 			y = 0.478 * safezoneH + safezoneY;
 			w = 0.04125 * safezoneW;
 			h = 0.055 * safezoneH;
-			action = "_this call OT_fnc_onNameDone";
+			// PREVIOUSLY
+				//action = "_this call OT_fnc_onNameDone"
+			// FIX: Converts the button click into a simulated Enter keypress (code 28) targeting the text box (idc 1400)
+			action = "[ctrlParent (_this select 0) displayCtrl 1400, 28] call OT_fnc_onNameKeyDown";
 		};
 		////////////////////////////////////////////////////////
 		// GUI EDITOR OUTPUT END
